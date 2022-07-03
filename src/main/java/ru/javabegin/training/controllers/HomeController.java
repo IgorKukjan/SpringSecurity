@@ -1,4 +1,4 @@
-package ru.javabegin.training;
+package ru.javabegin.training.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,11 +8,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import ru.javabegin.training.services.ProcessInterface;
+
 
 import java.security.Principal;
 
@@ -24,6 +25,9 @@ public class HomeController {
 
 	@Autowired
 	private AccessDecisionManager accessDecisionManager;
+
+	@Autowired
+	private ProcessInterface process;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -46,6 +50,10 @@ public class HomeController {
 	public String mainPage() {
 
 //		System.out.println(accessDecisionManager);
+
+
+		logger.info(process.getMessage());
+		System.out.println(process.getMessage());
 
 		printUserDetails();
 
